@@ -19,7 +19,7 @@ function levenshtein(a, b) {
         ++start;
     asize -= start;
     bsize -= start;
-    if (asize == 0 || bsize == 1)
+    if (asize == 0 || bsize < 3)
         return bsize;
     --start;
     let i; // iterates through a

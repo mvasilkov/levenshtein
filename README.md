@@ -1,2 +1,4 @@
-# levenshtein
-Compute the Levenshtein distance between two strings
+levenshtein
+===
+
+Compute the Levenshtein distance between two strings.

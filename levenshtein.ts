@@ -23,7 +23,7 @@ export function levenshtein(a: string, b: string): number {
     asize -= start
     bsize -= start
 
-    if (asize == 0 || bsize == 1) return bsize
+    if (asize == 0 || bsize < 3) return bsize
 
     --start
 
