@@ -1,0 +1,17 @@
+{
+  "name": "@mvasilkov/levenshtein",
+  "version": "0.0.0",
+  "description": "Compute the Levenshtein distance between two strings",
+  "main": "levenshtein.js",
+  "repository": "git@github.com:mvasilkov/levenshtein.git",
+  "author": "Mark Vasilkov <mvasilkov@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "ava"
+  },
+  "devDependencies": {
+    "ava": "1.0.0-beta.4",
+    "fast-levenshtein": "^2.0.6",
+    "unicode-passgen": "^1.0.0"
+  }
+}
