@@ -1,3 +1,6 @@
+/* This is a TypeScript port of LevenshteinDistance.java
+ * from the org.apache.commons.text.similarity package.
+ */
 export function levenshtein(a: string, b: string): number {
     if (a == b) return 0
 

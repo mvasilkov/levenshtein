@@ -2,6 +2,11 @@
   "name": "@mvasilkov/levenshtein",
   "version": "0.0.1",
   "description": "Compute the Levenshtein distance between two strings.",
+  "keywords": [
+    "levenshtein",
+    "edit",
+    "distance"
+  ],
   "main": "levenshtein.js",
   "repository": "git@github.com:mvasilkov/levenshtein.git",
   "author": "Mark Vasilkov <mvasilkov@gmail.com>",
