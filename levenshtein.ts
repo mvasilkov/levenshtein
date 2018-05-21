@@ -1,4 +1,4 @@
-/* This is a TypeScript port of LevenshteinDistance.java
+/* This began as a TypeScript port of LevenshteinDistance.java
  * from the org.apache.commons.text.similarity package.
  */
 export function levenshtein(a: string, b: string): number {
@@ -28,31 +28,35 @@ export function levenshtein(a: string, b: string): number {
 
     if (asize == 0 || bsize < 3) return bsize
 
-    --start
-
     let i: number // iterates through a
     let j: number // iterates through b
 
     let bj: number
+    let cur: number | undefined
     let p: number
     let q: number
 
-    const vec = new Array<number>(asize + 1)
+    const vec: number[] = Array(asize)
 
-    for (i = 0; i <= asize; ++i)
-        vec[i] = i
+    for (i = 0; i < asize;)
+        vec[i] = ++i
 
-    for (j = 1; j <= bsize; ++j) {
+    for (j = 0; j < bsize; ++j) {
         bj = b.charCodeAt(start + j)
-        p = vec[0]
-        vec[0] = j
+        cur = j + 1
+        p = j
 
-        for (i = 1; i <= asize; ++i) {
-            q = p + (a.charCodeAt(start + i) == bj ? 0 : 1)
+        for (i = 0; i < asize; ++i) {
+            q = cur
+            cur = p
             p = vec[i]
-            vec[i] = Math.min(vec[i - 1] + 1, vec[i] + 1, q)
+
+            if (a.charCodeAt(start + i) != bj)
+                cur = Math.min(cur, p, q) + 1
+
+            vec[i] = cur
         }
     }
 
-    return vec[asize]
+    return cur as number
 }

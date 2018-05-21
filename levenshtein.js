@@ -1,5 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+/* This began as a TypeScript port of LevenshteinDistance.java
+ * from the org.apache.commons.text.similarity package.
+ */
 function levenshtein(a, b) {
     if (a == b)
         return 0;
@@ -21,25 +24,28 @@ function levenshtein(a, b) {
     bsize -= start;
     if (asize == 0 || bsize < 3)
         return bsize;
-    --start;
     let i; // iterates through a
     let j; // iterates through b
     let bj;
+    let cur;
     let p;
     let q;
-    const vec = new Array(asize + 1);
-    for (i = 0; i <= asize; ++i)
-        vec[i] = i;
-    for (j = 1; j <= bsize; ++j) {
+    const vec = Array(asize);
+    for (i = 0; i < asize;)
+        vec[i] = ++i;
+    for (j = 0; j < bsize; ++j) {
         bj = b.charCodeAt(start + j);
-        p = vec[0];
-        vec[0] = j;
-        for (i = 1; i <= asize; ++i) {
-            q = p + (a.charCodeAt(start + i) == bj ? 0 : 1);
+        cur = j + 1;
+        p = j;
+        for (i = 0; i < asize; ++i) {
+            q = cur;
+            cur = p;
             p = vec[i];
-            vec[i] = Math.min(vec[i - 1] + 1, vec[i] + 1, q);
+            if (a.charCodeAt(start + i) != bj)
+                cur = Math.min(cur, p, q) + 1;
+            vec[i] = cur;
         }
     }
-    return vec[asize];
+    return cur;
 }
 exports.levenshtein = levenshtein;
