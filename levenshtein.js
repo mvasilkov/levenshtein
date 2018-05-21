@@ -30,9 +30,12 @@ function levenshtein(a, b) {
     let cur;
     let p;
     let q;
+    const cache = Array(asize);
     const vec = Array(asize);
-    for (i = 0; i < asize;)
+    for (i = 0; i < asize;) {
+        cache[i] = a.charCodeAt(start + i);
         vec[i] = ++i;
+    }
     for (j = 0; j < bsize; ++j) {
         bj = b.charCodeAt(start + j);
         cur = j + 1;
@@ -41,7 +44,7 @@ function levenshtein(a, b) {
             q = cur;
             cur = p;
             p = vec[i];
-            if (a.charCodeAt(start + i) != bj)
+            if (cache[i] != bj)
                 cur = Math.min(cur, p, q) + 1;
             vec[i] = cur;
         }
