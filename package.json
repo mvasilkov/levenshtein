@@ -1,6 +1,6 @@
 {
   "name": "@mvasilkov/levenshtein",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Compute the Levenshtein distance between two strings.",
   "keywords": [
     "levenshtein",

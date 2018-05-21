@@ -44,8 +44,10 @@ function levenshtein(a, b) {
             q = cur;
             cur = p;
             p = vec[i];
-            if (cache[i] != bj)
-                cur = Math.min(cur, p, q) + 1;
+            if (cache[i] != bj) {
+                // cur = Math.min(cur, p, q) + 1
+                cur = (cur < p ? cur < q ? cur : q : p < q ? p : q) + 1;
+            }
             vec[i] = cur;
         }
     }
